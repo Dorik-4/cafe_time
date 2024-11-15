@@ -32,7 +32,7 @@ class HomeScreen extends StatefulWidget {
   final String? category;
   final int? productId;
 
-  HomeScreen({this.category, this.productId});
+  const HomeScreen({this.category, this.productId});
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
