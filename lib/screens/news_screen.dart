@@ -28,7 +28,7 @@ class NewsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Новости и акции')),
+      appBar: AppBar(title: const Text('Новости и акции')),
       body: Container(
         decoration: commonGradientBackground(),
         child: ListView.builder(
@@ -56,7 +56,7 @@ class NewsScreen extends StatelessWidget {
                       SizedBox(height: 8),
                       Text(
                         _shortenText(newsItem['text']),
-                        style: TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 8.0),
@@ -64,7 +64,7 @@ class NewsScreen extends StatelessWidget {
                           newsItem.containsKey('productId')
                               ? 'Нажмите, чтобы перейти к товару'
                               : 'Нажмите, чтобы перейти к категории',
-                          style: TextStyle(color: Colors.blue),
+                          style: const TextStyle(color: Colors.blue),
                         ),
                       ),
                     ],
@@ -114,12 +114,12 @@ class NewsDetailScreen extends StatelessWidget {
             SizedBox(height: 16),
             Text(
               newsItem['title'],
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
             Text(
               newsItem['text'],
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             ),
           ],
         ),

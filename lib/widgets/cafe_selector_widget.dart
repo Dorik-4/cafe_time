@@ -61,7 +61,7 @@ class _CafeSelectorWidgetState extends State<CafeSelectorWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  widget.selectedCafe ?? 'Введите адрес кофейни',
+                  widget.selectedCafe ?? 'Введите адрес кафе',
                   style: TextStyle(color: Colors.white),
                 ),
                 Icon(
@@ -86,7 +86,7 @@ class _CafeSelectorWidgetState extends State<CafeSelectorWidget> {
                   controller: _searchController,
                   onChanged: _filterCafes,
                   decoration: const InputDecoration(
-                    hintText: 'Поиск кофейни...',
+                    hintText: 'Поиск кофе...',
                     hintStyle: TextStyle(color: Colors.white54),
                     border: InputBorder.none,
                     contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 14),

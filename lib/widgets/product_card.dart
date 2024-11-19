@@ -1,4 +1,4 @@
-import 'dart:ffi';
+
 
 import 'package:flutter/material.dart';
 
@@ -36,7 +36,7 @@ class ProductItem {
         description: json['description'],
         extraInfo: json['extra_info'],
         special: json['isSpecial'],
-    )
+    );
   }
 
 }

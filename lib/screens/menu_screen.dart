@@ -1,3 +1,4 @@
+import 'package:cafe_time/widgets/product_card.dart';
 import 'package:flutter/material.dart';
 import '../services/menu.dart';
 import '../widgets/cafe_selector_widget.dart';
@@ -20,92 +21,93 @@ class _MenuScreenState extends State<MenuScreen> {
   String? _selectedCafe;
   final String _phoneNumber = '+7 917 999-99-99';
   final ScrollController _scrollController = ScrollController();
-  final List<Map<String, dynamic>> _products = [
-    {
-      'id': 1,
-      'imageUrl': 'https://example.com/image1.jpg',
-      'name': 'Капучино',
-      'price': 150.00,
-      'productType': 'Кофе',
-    },
-    {
-      'id': 2,
-      'imageUrl': 'https://example.com/image2.jpg',
-      'name': 'Латте',
-      'price': 180.00,
-      'productType': 'Кофе',
-    },
-    {
-      'id': 3,
-      'imageUrl': 'https://example.com/image3.jpg',
-      'name': 'Чай черный',
-      'price': 100.00,
-      'productType': 'Чай',
-    },
-    {
-      'id': 1,
-      'imageUrl': 'https://example.com/image1.jpg',
-      'name': 'Капучино',
-      'price': 150.00,
-      'productType': 'Кофе',
-    },
-    {
-      'id': 2,
-      'imageUrl': 'https://example.com/image2.jpg',
-      'name': 'Латте',
-      'price': 180.00,
-      'productType': 'Кофе',
-    },
-    {
-      'id': 3,
-      'imageUrl': 'https://example.com/image3.jpg',
-      'name': 'Чай черный',
-      'price': 100.00,
-      'productType': 'Чай',
-    },
-    {
-      'id': 1,
-      'imageUrl': 'https://example.com/image1.jpg',
-      'name': 'Капучино',
-      'price': 150.00,
-      'productType': 'Кофе',
-    },
-    {
-      'id': 2,
-      'imageUrl': 'https://example.com/image2.jpg',
-      'name': 'Латте',
-      'price': 180.00,
-      'productType': 'Кофе',
-    },
-    {
-      'id': 3,
-      'imageUrl': 'https://example.com/image3.jpg',
-      'name': 'Чай черный',
-      'price': 100.00,
-      'productType': 'Чай',
-    },
-    {
-      'id': 1,
-      'imageUrl': 'https://example.com/image1.jpg',
-      'name': 'Капучино',
-      'price': 150.00,
-      'productType': 'Кофе',
-    },
-    {
-      'id': 2,
-      'imageUrl': 'https://example.com/image2.jpg',
-      'name': 'Латте',
-      'price': 180.00,
-      'productType': 'Кофе',
-    },
-    {
-      'id': 20,
-      'imageUrl': 'https://example.com/image3.jpg',
-      'name': 'Чай черный',
-      'price': 100.00,
-      'productType': 'Кофе',
-    },
-  ];
+  late List<ProductItem> _products = [];
+  // late List<Map<String, dynamic>> _products = [];
+  //   {
+  //     'id': 1,
+  //     'imageUrl': 'https://example.com/image1.jpg',
+  //     'name': 'Капучино',
+  //     'price': 150.00,
+  //     'productType': 'Кофе',
+  //   },
+  //   {
+  //     'id': 2,
+  //     'imageUrl': 'https://example.com/image2.jpg',
+  //     'name': 'Латте',
+  //     'price': 180.00,
+  //     'productType': 'Кофе',
+  //   },
+  //   {
+  //     'id': 3,
+  //     'imageUrl': 'https://example.com/image3.jpg',
+  //     'name': 'Чай черный',
+  //     'price': 100.00,
+  //     'productType': 'Чай',
+  //   },
+  //   {
+  //     'id': 1,
+  //     'imageUrl': 'https://example.com/image1.jpg',
+  //     'name': 'Капучино',
+  //     'price': 150.00,
+  //     'productType': 'Кофе',
+  //   },
+  //   {
+  //     'id': 2,
+  //     'imageUrl': 'https://example.com/image2.jpg',
+  //     'name': 'Латте',
+  //     'price': 180.00,
+  //     'productType': 'Кофе',
+  //   },
+  //   {
+  //     'id': 3,
+  //     'imageUrl': 'https://example.com/image3.jpg',
+  //     'name': 'Чай черный',
+  //     'price': 100.00,
+  //     'productType': 'Чай',
+  //   },
+  //   {
+  //     'id': 1,
+  //     'imageUrl': 'https://example.com/image1.jpg',
+  //     'name': 'Капучино',
+  //     'price': 150.00,
+  //     'productType': 'Кофе',
+  //   },
+  //   {
+  //     'id': 2,
+  //     'imageUrl': 'https://example.com/image2.jpg',
+  //     'name': 'Латте',
+  //     'price': 180.00,
+  //     'productType': 'Кофе',
+  //   },
+  //   {
+  //     'id': 3,
+  //     'imageUrl': 'https://example.com/image3.jpg',
+  //     'name': 'Чай черный',
+  //     'price': 100.00,
+  //     'productType': 'Чай',
+  //   },
+  //   {
+  //     'id': 1,
+  //     'imageUrl': 'https://example.com/image1.jpg',
+  //     'name': 'Капучино',
+  //     'price': 150.00,
+  //     'productType': 'Кофе',
+  //   },
+  //   {
+  //     'id': 2,
+  //     'imageUrl': 'https://example.com/image2.jpg',
+  //     'name': 'Латте',
+  //     'price': 180.00,
+  //     'productType': 'Кофе',
+  //   },
+  //   {
+  //     'id': 20,
+  //     'imageUrl': 'https://example.com/image3.jpg',
+  //     'name': 'Чай черный',
+  //     'price': 100.00,
+  //     'productType': 'Кофе',
+  //   },
+  // ];
 
   @override
   void initState() {
@@ -121,7 +123,7 @@ class _MenuScreenState extends State<MenuScreen> {
       }
 
       if (widget.productId != null) {
-        final index = _products.indexWhere((product) => product['id'] == widget.productId);
+        final index = _products.indexWhere((product) => product.id == widget.productId);
         if (index != -1) {
           _scrollController.animateTo(
             index * 230.0,
@@ -135,6 +137,7 @@ class _MenuScreenState extends State<MenuScreen> {
 
   _asyncMethod() async {
     _categories = await fetchCategories();
+    _products = await fetchMenu();
     setState(() {
     });
   }
@@ -143,7 +146,7 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     final filteredProducts = _selectedCategory == 'Все'
         ? _products
-        : _products.where((product) => product['productType'] == _selectedCategory).toList();
+        : _products.where((product) => product.idCategory == _categories.indexOf(_selectedCategory)).toList();
 
     return Scaffold(
       body: Container(
@@ -159,7 +162,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   children: [
                     const SizedBox(height: 40),
                     const Text(
-                      'Выберите кофейню',
+                      'Выберите кафе',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     const SizedBox(height: 10),
@@ -274,12 +277,12 @@ class _MenuScreenState extends State<MenuScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  product['name'],
+                                  product.title,
                                   style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  'Цена: ${product['price']} руб.',
+                                  'Цена: ${product.price} руб.',
                                   style: const TextStyle(fontSize: 16, color: Colors.green),
                                 ),
                               ],
@@ -298,3 +301,5 @@ class _MenuScreenState extends State<MenuScreen> {
     );
   }
 }
+
+
