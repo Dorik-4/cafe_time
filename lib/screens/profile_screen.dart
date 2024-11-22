@@ -34,22 +34,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
       builder: (BuildContext context) {
         String _tempName = _name;
         return AlertDialog(
-          title: Text('Изменить имя'),
+          title: const Text('Изменить имя'),
           content: TextField(
             onChanged: (value) {
               _tempName = value;
             },
-            decoration: InputDecoration(hintText: "Введите новое имя"),
+            decoration: const InputDecoration(hintText: "Введите новое имя"),
           ),
           actions: [
             TextButton(
-              child: Text('Отмена'),
+              child: const Text('Отмена'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('Сохранить'),
+              child: const Text('Сохранить'),
               onPressed: () {
                 setState(() {
                   _name = _tempName;
@@ -73,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               // Строка с фотографией и текстом (имя и телефон)
               Row(
                 
@@ -87,7 +87,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       backgroundImage: AssetImage(_profileImagePath),  // Путь к изображению
                     ),
                   ),
-                  SizedBox(width: 20),  // Отступ между фотографией и текстом
+                  const SizedBox(width: 20),  // Отступ между фотографией и текстом
                   // Имя пользователя и номер телефона
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,28 +96,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         children: [
                           Text(
                             _name,
-                            style: TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
+                            style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold),
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           IconButton(
-                            icon: Icon(Icons.edit, color: Colors.white),
+                            icon: const Icon(Icons.edit, color: Colors.white),
                             onPressed: _editName,  // Открываем диалог редактирования имени
                           ),
                         ],
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(
                         _phoneNumber,
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                        style: const TextStyle(color: Colors.white, fontSize: 18),
                       ),
                     ],
                   ),
                 ],
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Любимый напиток
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.white24,
                   borderRadius: BorderRadius.circular(10),
@@ -125,7 +125,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Любимый напиток', style: TextStyle(color: Colors.white)),
+                    const Text('Любимый напиток', style: TextStyle(color: Colors.white)),
                     DropdownButtonFormField<String>(
                       value: _selectedDrink,
                       onChanged: (String? newValue) {
@@ -150,7 +150,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               // Процент скидки
               Container(
                 padding: EdgeInsets.all(16),
@@ -161,8 +161,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('% Скидки', style: TextStyle(color: Colors.white)),
-                    SizedBox(height: 10),
+                    const Text('% Скидки', style: TextStyle(color: Colors.white)),
+                    const SizedBox(height: 10),
                     Text(
                       '$_discount%',
                       style: TextStyle(color: Colors.white, fontSize: 18),
@@ -177,15 +177,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Navigator.pushReplacementNamed(context, '/');  // Возвращаемся на экран авторизации
                 },
                 style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                   backgroundColor: Colors.red,  // Цвет кнопки выхода
                 ),
-                child: Text(
+                child: const Text(
                   'Выйти из аккаунта',
                   style: TextStyle(fontSize: 18),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
             ],
           ),
         ),

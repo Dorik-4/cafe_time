@@ -22,92 +22,32 @@ class _MenuScreenState extends State<MenuScreen> {
   final String _phoneNumber = '+7 917 999-99-99';
   final ScrollController _scrollController = ScrollController();
   late List<ProductItem> _products = [];
-  // late List<Map<String, dynamic>> _products = [];
-  //   {
-  //     'id': 1,
-  //     'imageUrl': 'https://example.com/image1.jpg',
-  //     'name': 'Капучино',
-  //     'price': 150.00,
-  //     'productType': 'Кофе',
-  //   },
-  //   {
-  //     'id': 2,
-  //     'imageUrl': 'https://example.com/image2.jpg',
-  //     'name': 'Латте',
-  //     'price': 180.00,
-  //     'productType': 'Кофе',
-  //   },
-  //   {
-  //     'id': 3,
-  //     'imageUrl': 'https://example.com/image3.jpg',
-  //     'name': 'Чай черный',
-  //     'price': 100.00,
-  //     'productType': 'Чай',
-  //   },
-  //   {
-  //     'id': 1,
-  //     'imageUrl': 'https://example.com/image1.jpg',
-  //     'name': 'Капучино',
-  //     'price': 150.00,
-  //     'productType': 'Кофе',
-  //   },
-  //   {
-  //     'id': 2,
-  //     'imageUrl': 'https://example.com/image2.jpg',
-  //     'name': 'Латте',
-  //     'price': 180.00,
-  //     'productType': 'Кофе',
-  //   },
-  //   {
-  //     'id': 3,
-  //     'imageUrl': 'https://example.com/image3.jpg',
-  //     'name': 'Чай черный',
-  //     'price': 100.00,
-  //     'productType': 'Чай',
-  //   },
-  //   {
-  //     'id': 1,
-  //     'imageUrl': 'https://example.com/image1.jpg',
-  //     'name': 'Капучино',
-  //     'price': 150.00,
-  //     'productType': 'Кофе',
-  //   },
-  //   {
-  //     'id': 2,
-  //     'imageUrl': 'https://example.com/image2.jpg',
-  //     'name': 'Латте',
-  //     'price': 180.00,
-  //     'productType': 'Кофе',
-  //   },
-  //   {
-  //     'id': 3,
-  //     'imageUrl': 'https://example.com/image3.jpg',
-  //     'name': 'Чай черный',
-  //     'price': 100.00,
-  //     'productType': 'Чай',
-  //   },
-  //   {
-  //     'id': 1,
-  //     'imageUrl': 'https://example.com/image1.jpg',
-  //     'name': 'Капучино',
-  //     'price': 150.00,
-  //     'productType': 'Кофе',
-  //   },
-  //   {
-  //     'id': 2,
-  //     'imageUrl': 'https://example.com/image2.jpg',
-  //     'name': 'Латте',
-  //     'price': 180.00,
-  //     'productType': 'Кофе',
-  //   },
-  //   {
-  //     'id': 20,
-  //     'imageUrl': 'https://example.com/image3.jpg',
-  //     'name': 'Чай черный',
-  //     'price': 100.00,
-  //     'productType': 'Кофе',
-  //   },
-  // ];
+  List<int> cart = [];
+
+  void addToCart(int productId) {
+    setState(() {
+      cart.add(productId);
+    });
+  }
+
+  void removeFromCart(int productId) {
+    setState(() {
+      cart.remove(productId);
+    });
+  }
+
+  void increaseQuantity(int productId) {
+    setState(() {
+      cart.add(productId);
+    });
+  }
+
+  void decreaseQuantity(int productId) {
+    setState(() {
+      cart.remove(productId);
+    });
+  }
+
 
   @override
   void initState() {
@@ -253,11 +193,12 @@ class _MenuScreenState extends State<MenuScreen> {
                   itemCount: filteredProducts.length,
                   itemBuilder: (context, index) {
                     final product = filteredProducts[index];
+                    int quantity = cart.where((id) => id == product.id).length;
                     return Card(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(padding: EdgeInsets.only(top: 5)),
+                          // const Padding(padding: EdgeInsets.only(top: 5)),
                           Expanded(
                             child: Container(
                               decoration: BoxDecoration(
@@ -265,28 +206,74 @@ class _MenuScreenState extends State<MenuScreen> {
                               ),
                               clipBehavior: Clip.antiAlias,
                               child: Image.network(
-                                  "https://avatars.dzeninfra.ru/get-zen_doc/2810999/pub_60b8adfcc1425a0c3af30a52_60b8b1cc17777f062059e550/scale_1200",
-                                  height: 150,
+                                  product.photoUrl,
+                                  // height: 150,
                                   fit: BoxFit.cover
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  product.title,
-                                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                product.title,
+                                style:
+                                  const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Цена: ${product.price} руб.',
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    color: Colors.green
                                 ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  'Цена: ${product.price} руб.',
-                                  style: const TextStyle(fontSize: 16, color: Colors.green),
-                                ),
-                              ],
-                            ),
+                              ),
+
+                              quantity == 0
+                                ? Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: IconButton(
+                                    icon:
+                                    const Icon(
+                                        Icons.add_circle,
+                                        size: 40
+                                    ),
+                                    onPressed: () =>
+                                        increaseQuantity(product.id),
+                                  ),
+                                )
+                                : Row(
+                                    mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                    children: [
+                                  IconButton(
+                                    icon:
+                                      const Icon(
+                                          Icons.remove_circle,
+                                          size: 40
+                                      ),
+                                    onPressed: () =>
+                                        decreaseQuantity(product.id),
+                                  ),
+                                  Text(
+                                    '$quantity',
+                                    style: const TextStyle(fontSize: 24),
+                                  ),
+                                  IconButton(
+                                    icon:
+                                      const Icon(
+                                          Icons.add_circle,
+                                          size: 40
+                                      ),
+                                    onPressed: () =>
+                                        increaseQuantity(product.id),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ],
                       ),

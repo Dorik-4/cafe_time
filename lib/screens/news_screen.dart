@@ -5,23 +5,25 @@ import '../main.dart';
 class NewsScreen extends StatelessWidget {
   final List<Map<String, dynamic>> news = [
     {
-      'title': 'Новость 1',
-      'text': 'Это описание первой новости, которое будет отображаться на экране...',
-      'imageUrl': 'https://example.com/news1.jpg',
-      'category': 'Кофе',
-      'productId': 20,
+      'title': 'Бодрая рабочая неделя',
+      'text': 'С 7:00 по 10:00 действует скидка 15% на любой кофе для студентов и школьшиков',
+      'imageUrl': 'https://www.mos.ru/upload/newsfeed/newsfeed/PYLS_vakansiiivanko.jpg',
+      'category': 'Горячие напитки',
+      'productId': 3,
     },
     {
       'title': 'Акция на кофе',
-      'text': 'Специальное предложение на кофе, скидки до 50%...',
-      'imageUrl': 'https://example.com/news2.jpg',
-      'category': 'Кофе',
+      'text': 'Специальное предложение на кофе, при покупке 5 больших кофе - скидки до 50%',
+      'imageUrl': 'https://avatars.mds.yandex.net/i?id=f2f37ccbb5b0df4d60bbc90b2bd045ca_l-4919870-images-thumbs&n=13',
+      'category': 'Горячие напитки',
+      'productId': 3,
     },
     {
-      'title': 'Новость 3',
-      'text': 'Это еще одно описание новости для проверки отображения...',
-      'imageUrl': 'https://example.com/news3.jpg',
-      'category': 'Чай',
+      'title': 'Приятный обед',
+      'text': 'Уделите время на бизнес ланч "Трудоголик" стоимостью от 350 рублей',
+      'imageUrl': 'https://static-actual-production.chibbis.ru/049ca2d0562d0736ab4b76acb5683ba5.jpeg',
+      'category': 'Суп',
+      'productId': 2,
     },
   ];
 
